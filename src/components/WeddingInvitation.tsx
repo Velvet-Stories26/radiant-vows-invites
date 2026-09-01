@@ -13,7 +13,6 @@ import {
   Sparkles,
   X,
 } from "lucide-react";
-import { ClientOnly } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/couple-hero.jpg";
 import walkImage from "@/assets/memory-walk.jpg";
@@ -40,9 +39,12 @@ function useCountdown() {
   };
   const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
-    setTime(calculate());
+    const initialTimer = window.setTimeout(() => setTime(calculate()), 500);
     const timer = window.setInterval(() => setTime(calculate()), 1000);
-    return () => window.clearInterval(timer);
+    return () => {
+      window.clearTimeout(initialTimer);
+      window.clearInterval(timer);
+    };
   }, []);
   return time;
 }
@@ -260,9 +262,7 @@ export function WeddingInvitation() {
         <p className="eyebrow">Counting every heartbeat</p>
         <h2>Until we say “I do”</h2>
         <div className="countdown">
-          <ClientOnly fallback={Object.keys(countdown).map((label) => <div key={label}><strong>00</strong><span>{label}</span></div>)}>
-            {Object.entries(countdown).map(([label, value]) => <div key={label}><strong>{String(value).padStart(2, "0")}</strong><span>{label}</span></div>)}
-          </ClientOnly>
+          {Object.entries(countdown).map(([label, value]) => <div key={label}><strong>{String(value).padStart(2, "0")}</strong><span>{label}</span></div>)}
         </div>
       </section>
 
