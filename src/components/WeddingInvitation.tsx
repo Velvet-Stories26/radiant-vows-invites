@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   CalendarDays,
   ChevronDown,
@@ -28,11 +28,6 @@ const gallery = [
 ];
 
 function useCountdown() {
-  const hydrated = useSyncExternalStore(
-    () => () => undefined,
-    () => true,
-    () => false,
-  );
   const calculate = () => {
     const distance = Math.max(0, weddingDate.getTime() - Date.now());
     return {
@@ -51,7 +46,7 @@ function useCountdown() {
       window.clearInterval(timer);
     };
   }, []);
-  return hydrated ? time : { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  return time;
 }
 
 function ScratchBox({ label, value }: { label: string; value: string }) {
@@ -130,6 +125,7 @@ function FloralMark() {
 
 export function WeddingInvitation() {
   const countdown = useCountdown();
+  const [mounted, setMounted] = useState(false);
   const [opened, setOpened] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
   const [letterOpen, setLetterOpen] = useState(false);
@@ -142,6 +138,7 @@ export function WeddingInvitation() {
   const swipeStart = useRef(0);
 
   useEffect(() => {
+    setMounted(true);
     const onScroll = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
@@ -267,7 +264,7 @@ export function WeddingInvitation() {
         <p className="eyebrow">Counting every heartbeat</p>
         <h2>Until we say “I do”</h2>
         <div className="countdown">
-          {Object.entries(countdown).map(([label, value]) => <div key={label}><strong>{String(value).padStart(2, "0")}</strong><span>{label}</span></div>)}
+          {Object.entries(countdown).map(([label, value]) => <div key={label}><strong>{mounted ? String(value).padStart(2, "0") : "00"}</strong><span>{label}</span></div>)}
         </div>
       </section>
 
