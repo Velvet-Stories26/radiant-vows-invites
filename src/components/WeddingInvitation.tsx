@@ -137,7 +137,7 @@ export function WeddingInvitation() {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
       document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
-        if (element.getBoundingClientRect().top < window.innerHeight * 0.88) element.dataset.visible = "true";
+        if (element.getBoundingClientRect().top < window.innerHeight * 0.88) element.dataset["visible"] = "true";
       });
     };
     onScroll();
@@ -343,7 +343,7 @@ export function WeddingInvitation() {
         <div className="lightbox" role="dialog" aria-modal="true" aria-label="Photo gallery" onPointerDown={(event) => { swipeStart.current = event.clientX; }} onPointerUp={(event) => { const distance = event.clientX - swipeStart.current; if (Math.abs(distance) > 40) moveLightbox(distance > 0 ? -1 : 1); }}>
           <Button size="icon" variant="ghost" className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Close gallery"><X /></Button>
           <Button size="icon" variant="ghost" className="lightbox-prev" onClick={() => moveLightbox(-1)} aria-label="Previous photo"><ChevronLeft /></Button>
-          <img src={gallery[lightbox].src} alt={gallery[lightbox].alt} />
+          <img src={gallery[lightbox]?.src} alt={gallery[lightbox]?.alt ?? "Wedding memory"} />
           <Button size="icon" variant="ghost" className="lightbox-next" onClick={() => moveLightbox(1)} aria-label="Next photo"><ChevronRight /></Button>
           <span>{lightbox + 1} / {gallery.length}</span>
         </div>
