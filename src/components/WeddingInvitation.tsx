@@ -37,8 +37,9 @@ function useCountdown() {
       seconds: Math.floor((distance / 1000) % 60),
     };
   };
-  const [time, setTime] = useState(calculate);
+  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   useEffect(() => {
+    setTime(calculate());
     const timer = window.setInterval(() => setTime(calculate()), 1000);
     return () => window.clearInterval(timer);
   }, []);
