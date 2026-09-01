@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   CalendarDays,
   ChevronDown,
@@ -28,6 +28,11 @@ const gallery = [
 ];
 
 function useCountdown() {
+  const hydrated = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false,
+  );
   const calculate = () => {
     const distance = Math.max(0, weddingDate.getTime() - Date.now());
     return {
@@ -46,7 +51,7 @@ function useCountdown() {
       window.clearInterval(timer);
     };
   }, []);
-  return time;
+  return hydrated ? time : { days: 0, hours: 0, minutes: 0, seconds: 0 };
 }
 
 function ScratchBox({ label, value }: { label: string; value: string }) {
