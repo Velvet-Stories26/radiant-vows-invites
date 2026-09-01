@@ -259,7 +259,7 @@ export function WeddingInvitation() {
         <p className="eyebrow">Counting every heartbeat</p>
         <h2>Until we say “I do”</h2>
         <div className="countdown">
-          {Object.entries(countdown).map(([label, value]) => <div key={label}><strong>{String(value).padStart(2, "0")}</strong><span>{label}</span></div>)}
+          {Object.entries(countdown).map(([label, value]) => <div key={label}><strong suppressHydrationWarning>{String(value).padStart(2, "0")}</strong><span>{label}</span></div>)}
         </div>
       </section>
 
