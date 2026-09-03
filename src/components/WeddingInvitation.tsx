@@ -20,7 +20,12 @@ import ringsImage from "@/assets/memory-rings.jpg";
 import laughImage from "@/assets/memory-laugh.jpg";
 import envelopeImage from "@/assets/envelope.png";
 import weddingAnimation from "@/assets/wedding-animation.mp4";
-import invitationBg from "@/assets/invitation-bg.png";
+import invitationBg from "@/assets/invitaion-bg.png";
+import engagementImage from "@/assets/engagement.png";
+import weddingImage from "@/assets/wedding.png";
+import receptionImage from "@/assets/invitation1-bg.png";
+import topTornEdge from "@/assets/top-torn-svg.svg";
+import bottomTornEdge from "@/assets/bottom-torn-svg.svg";
 
 const weddingDate = new Date("2027-02-14T17:30:00+05:30");
 const gallery = [
@@ -52,8 +57,9 @@ function useCountdown() {
   return time;
 }
 
-function ScratchBox({ label, value }: { label: string; value: string }) {
+function ScratchBox({ label, value, onReveal }: { label: string; value: string; onReveal: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const hasRevealed = useRef(false);
   const [revealed, setRevealed] = useState(false);
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -94,7 +100,11 @@ function ScratchBox({ label, value }: { label: string; value: string }) {
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
     let clear = 0;
     for (let i = 3; i < pixels.length; i += 80) if (pixels[i] === 0) clear++;
-    if (clear / (pixels.length / 80) > 0.34) setRevealed(true);
+    if (clear / (pixels.length / 80) > 0.34 && !hasRevealed.current) {
+      hasRevealed.current = true;
+      setRevealed(true);
+      onReveal();
+    }
   };
 
   return (
@@ -138,6 +148,7 @@ export function WeddingInvitation() {
   const [slide, setSlide] = useState(0);
   const [music, setMusic] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [revealedDates, setRevealedDates] = useState(0);
   const audioRef = useRef<{ context: AudioContext; oscillators: OscillatorNode[] } | null>(null);
   const swipeStart = useRef(0);
 
@@ -244,7 +255,7 @@ export function WeddingInvitation() {
             <video src={weddingAnimation} autoPlay loop muted playsInline className="hero-video-bg" />
             <div className="hero-shade" />
             <div className="hero-copy" data-reveal>
-              <p className="hero-subheading">TOGETHER WITH THEIR FAMILIES</p>
+              <p className="hero-subheading">WE ARE <br></br>GETTING MARRIED</p>
               <h1 className="hero-names">
                 <span className="script-title">Subith</span>
                 <span className="hero-amp">&amp;</span>
@@ -255,8 +266,7 @@ export function WeddingInvitation() {
                 <span className="divider-diamond">◇</span>
                 <span className="divider-line" />
               </div>
-              <p className="hero-action-text">ARE GETTING MARRIED</p>
-              <p className="hero-date-text">20 · December · 2026</p>
+              <p className="hero-action-text"></p>
               <div className="hero-scroll-indicator">
                 <span>SCROLL TO DISCOVER</span>
                 <div className="scroll-line" />
@@ -264,23 +274,33 @@ export function WeddingInvitation() {
             </div>
           </section>
 
-          <section className="paper-section date-reveal-section" data-reveal>
+          <section className="paper-section date-reveal-section torn-section" data-reveal>
+            <img className="torn-edge torn-edge-top" src={topTornEdge} alt="" aria-hidden="true" />
+            <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
             <p className="eyebrow">Save our date</p>
             <h2>A golden day awaits</h2>
             <p className="section-intro">Gently scratch each golden panel to reveal when our forever begins.</p>
             <div className="scratch-grid">
-              <ScratchBox label="Day" value="14" />
-              <ScratchBox label="Month" value="FEB" />
-              <ScratchBox label="Year" value="2027" />
+              <ScratchBox label="Day" value="14" onReveal={() => setRevealedDates((count) => count + 1)} />
+              <ScratchBox label="Month" value="FEB" onReveal={() => setRevealedDates((count) => count + 1)} />
+              <ScratchBox label="Year" value="2027" onReveal={() => setRevealedDates((count) => count + 1)} />
             </div>
+            {revealedDates === 3 && (
+              <div className="date-celebration" role="status">
+                <div className="celebration-sparkles" aria-hidden="true">✦ ✧ ✦</div>
+                <strong>Our forever begins</strong>
+                <span>14 February 2027</span>
+              </div>
+            )}
           </section>
 
           <section className="invitation-band" data-reveal style={{ backgroundImage: `url(${invitationBg})` }}>
             <div className="formal-card">
               <p className="eyebrow">YOU ARE INVITED TO THE<br />WEDDING CEREMONY OF</p>
-              
+
+              <FloralMark />
               <h2 className="script-title card-person-name">Subith</h2>
-              
+
               <div className="parent-section">
                 <span className="parent-label">SON OF</span>
                 <strong className="parent-names">MR. SOOSADIMAI &amp; MRS. VEERGIN MARY</strong>
@@ -307,15 +327,23 @@ export function WeddingInvitation() {
             </div>
           </section>
 
-          <section className="countdown-section" data-reveal>
+          <section className="countdown-section torn-section" data-reveal>
+            <img className="torn-edge torn-edge-top" src={topTornEdge} alt="" aria-hidden="true" />
+            <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
             <p className="eyebrow">Counting every heartbeat</p>
             <h2>Until we say “I do”</h2>
             <div className="countdown">
               {Object.entries(countdown).map(([label, value]) => <div key={label}><strong>{mounted ? String(value).padStart(2, "0") : "00"}</strong><span>{label}</span></div>)}
             </div>
           </section>
+                    <section id="memories" className="slideshow-section">
+            {gallery.map((image, index) => <img key={image.src} className={slide === index ? "active" : ""} src={image.src} alt={image.alt} width={1280} height={index === 0 ? 1536 : 912} loading="lazy" />)}
+            <div className="slideshow-shade" />
+            <div className="slideshow-copy" data-reveal><p className="eyebrow">Beautiful memories</p><h2>Every frame, a chapter</h2><p>Of laughter held close and moments we will carry into forever.</p></div>
+            <div className="slide-dots">{gallery.map((_, index) => <button key={index} className={slide === index ? "active" : ""} onClick={() => setSlide(index)} aria-label={`Show slide ${index + 1}`} />)}</div>
+          </section>
 
-          <section id="story" className="story-section paper-section">
+          {/* <section id="story" className="story-section paper-section">
             <div data-reveal><p className="eyebrow">Written in the stars</p><h2>Our Love Story</h2></div>
             <div className="timeline">
               {[
@@ -330,16 +358,11 @@ export function WeddingInvitation() {
               <Button variant="outline" onClick={() => setStoryOpen(!storyOpen)}>{storyOpen ? "Hide the story" : "Turn the page"}</Button>
               {storyOpen && <p>Jai arrived twenty minutes late. Saanvi had ordered for him anyway—and somehow remembered exactly how he took his coffee. He says it was fate. She says it was excellent intuition.</p>}
             </div>
-          </section>
+          </section> */}
 
-          <section id="memories" className="slideshow-section">
-            {gallery.map((image, index) => <img key={image.src} className={slide === index ? "active" : ""} src={image.src} alt={image.alt} width={1280} height={index === 0 ? 1536 : 912} loading="lazy" />)}
-            <div className="slideshow-shade" />
-            <div className="slideshow-copy" data-reveal><p className="eyebrow">Beautiful memories</p><h2>Every frame, a chapter</h2><p>Of laughter held close and moments we will carry into forever.</p></div>
-            <div className="slide-dots">{gallery.map((_, index) => <button key={index} className={slide === index ? "active" : ""} onClick={() => setSlide(index)} aria-label={`Show slide ${index + 1}`} />)}</div>
-          </section>
-
-          <section className="gallery-section paper-section">
+          <section className="gallery-section paper-section torn-section">
+            <img className="torn-edge torn-edge-top" src={topTornEdge} alt="" aria-hidden="true" />
+            <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
             <div data-reveal><p className="eyebrow">Through our eyes</p><h2>A few favorite moments</h2></div>
             <div className="gallery-grid">
               {gallery.map((image, index) => <button key={image.src} className={image.ratio} onClick={() => setLightbox(index)} aria-label={`View ${image.alt} fullscreen`}><img src={image.src} alt={image.alt} width={1024} height={1280} loading="lazy" /><span>0{index + 1}</span></button>)}
@@ -353,11 +376,14 @@ export function WeddingInvitation() {
             </div>
           </section>
 
-          <section id="events" className="events-section paper-section">
+          <section id="events" className="events-section paper-section torn-section">
+            <img className="torn-edge torn-edge-top" src={topTornEdge} alt="" aria-hidden="true" />
+            <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
             <div data-reveal><p className="eyebrow">The celebrations</p><h2>Join us for</h2></div>
             <div className="event-list">
-              <article data-reveal><span>01</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
-              <article data-reveal><span>02</span><div><Heart /><p>Sunday · February 14</p><h3>Wedding Ceremony</h3><p>5:30 in the evening · The Palace Courtyard</p><small>Baraat begins at 4:30 · Festive traditional attire</small></div></article>
+              <article className="event-card event-engagement" data-reveal><span>01</span><div><Heart /><p>Friday · February 12</p><h3>Engagement</h3><p>7:00 in the evening · The Garden Terrace</p><small>An evening of blessings, laughter & celebration</small></div></article>
+              <article className="event-card event-wedding" data-reveal><span>02</span><div><CalendarDays /><p>Sunday · February 14</p><h3>Wedding</h3><p>5:30 in the evening · The Palace Courtyard</p><small>Baraat begins at 4:30 · Festive traditional attire</small></div></article>
+              <article className="event-card event-reception" data-reveal><span>03</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
             </div>
           </section>
 
