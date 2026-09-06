@@ -23,7 +23,7 @@ import weddingAnimation from "@/assets/wedding-animation.mp4";
 import invitationBg from "@/assets/invitaion-bg.png";
 import engagementImage from "@/assets/engagement.png";
 import weddingImage from "@/assets/wedding.png";
-import receptionImage from "@/assets/invitation1-bg.png";
+import receptionImage from "@/assets/invitaion1-bg.png";
 import topTornEdge from "@/assets/top-torn-svg.svg";
 import bottomTornEdge from "@/assets/bottom-torn-svg.svg";
 
@@ -257,9 +257,9 @@ export function WeddingInvitation() {
             <div className="hero-copy" data-reveal>
               <p className="hero-subheading">WE ARE <br></br>GETTING MARRIED</p>
               <h1 className="hero-names">
-                <span className="script-title">Subith</span>
+                <span className="script-title">Samjin</span>
                 <span className="hero-amp">&amp;</span>
-                <span className="script-title">Jijitha</span>
+                <span className="script-title">Jineesha</span>
               </h1>
               <div className="hero-gold-divider">
                 <span className="divider-line" />
@@ -275,8 +275,8 @@ export function WeddingInvitation() {
           </section>
 
           <section className="paper-section date-reveal-section torn-section" data-reveal>
-            <img className="torn-edge torn-edge-top" src={topTornEdge} alt="" aria-hidden="true" />
-            <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
+            {/* <img className="torn-edge torn-edge-top" src={topTornEdge} alt="" aria-hidden="true" />
+            <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" /> */}
             <p className="eyebrow">Save our date</p>
             <h2>A golden day awaits</h2>
             <p className="section-intro">Gently scratch each golden panel to reveal when our forever begins.</p>
@@ -299,7 +299,7 @@ export function WeddingInvitation() {
               <p className="eyebrow">YOU ARE INVITED TO THE<br />WEDDING CEREMONY OF</p>
 
               <FloralMark />
-              <h2 className="script-title card-person-name">Subith</h2>
+              <h2 className="script-title card-person-name">Samjin</h2>
 
               <div className="parent-section">
                 <span className="parent-label">SON OF</span>
@@ -308,7 +308,7 @@ export function WeddingInvitation() {
 
               <p className="with-connector">With</p>
 
-              <h2 className="script-title card-person-name">Jijitha</h2>
+              <h2 className="script-title card-person-name">Jineesha</h2>
 
               <div className="parent-section">
                 <span className="parent-label">DAUGHTER OF</span>
@@ -381,15 +381,15 @@ export function WeddingInvitation() {
             <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
             <div data-reveal><p className="eyebrow">The celebrations</p><h2>Join us for</h2></div>
             <div className="event-list">
-              <article className="event-card event-engagement" data-reveal><span>01</span><div><Heart /><p>Friday · February 12</p><h3>Engagement</h3><p>7:00 in the evening · The Garden Terrace</p><small>An evening of blessings, laughter & celebration</small></div></article>
-              <article className="event-card event-wedding" data-reveal><span>02</span><div><CalendarDays /><p>Sunday · February 14</p><h3>Wedding</h3><p>5:30 in the evening · The Palace Courtyard</p><small>Baraat begins at 4:30 · Festive traditional attire</small></div></article>
-              <article className="event-card event-reception" data-reveal><span>03</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
+              <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Friday · February 12</p><h3>Engagement</h3><p>7:00 in the evening · The Garden Terrace</p><small>An evening of blessings, laughter & celebration</small></div></article>
+              <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Sunday · February 14</p><h3>Wedding</h3><p>5:30 in the evening · The Palace Courtyard</p><small>Baraat begins at 4:30 · Festive traditional attire</small></div></article>
+              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
             </div>
           </section>
 
           <section className="letter-section">
             <div className={letterOpen ? "love-envelope is-open" : "love-envelope"} data-reveal>
-              <div className="love-letter"><p>Dear loved ones,</p><p>Every chapter of our lives carries a little of your love. Having you beside us as we begin this one would mean the world.</p><strong>With all our love,<br />Subith &amp; Jijitha</strong></div>
+              <div className="love-letter"><p>Dear loved ones,</p><p>Every chapter of our lives carries a little of your love. Having you beside us as we begin this one would mean the world.</p><strong>With all our love,<br />Samjin &amp; Jineesha</strong></div>
               <div className="love-envelope-front"><Button className="letter-seal" onClick={() => setLetterOpen(!letterOpen)} aria-label="Open our love letter"><Heart fill="currentColor" /></Button></div>
             </div>
             <p className="opening-hint">{letterOpen ? "A note from our hearts" : "Tap the heart to open our letter"}</p>
@@ -413,9 +413,9 @@ export function WeddingInvitation() {
           </section>
 
           <section className="final-section">
-            <img src={laughImage} alt="Subith and Jijitha laughing together at dusk" width={1280} height={912} loading="lazy" />
+            <img src={laughImage} alt="Samjin and Jineesha laughing together at dusk" width={1280} height={912} loading="lazy" />
             <div className="final-shade" />
-            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>14 · 02 · 2027</p><span>Subith &amp; Jijitha</span></div>
+            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>14 · 02 · 2027</p><span>Samjin &amp; Jineesha</span></div>
           </section>
 
           {lightbox !== null && (

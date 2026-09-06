@@ -795,6 +795,7 @@ a {
 .formal-card .card-person-name {
   font-size: clamp(3.4rem, 11vw, 5.7rem);
   line-height: 0.9;
+  margin-bottom: 0.5rem;
 }
 
 .formal-card .parent-section {
@@ -802,7 +803,7 @@ a {
 }
 
 .formal-card .with-connector {
-  margin: 0.4rem 0 0.7rem;
+  margin: 0.4rem 0 1.5rem;
 }
 
 .card-custom-message {
@@ -1228,7 +1229,7 @@ a {
 .letter-section {
   padding: 8rem 1.2rem 5rem;
   text-align: center;
-  background: var(--night);
+  background: var(--secondary);
   color: var(--primary-foreground);
   min-height: 620px
 }
