@@ -383,7 +383,7 @@ export function WeddingInvitation() {
             <div className="event-list">
               <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Friday · February 12</p><h3>Engagement</h3><p>7:00 in the evening · The Garden Terrace</p><small>An evening of blessings, laughter & celebration</small></div></article>
               <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Sunday · February 14</p><h3>Wedding</h3><p>5:30 in the evening · The Palace Courtyard</p><small>Baraat begins at 4:30 · Festive traditional attire</small></div></article>
-              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
+              <article className="event-card event-reception" style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
             </div>
           </section>
 

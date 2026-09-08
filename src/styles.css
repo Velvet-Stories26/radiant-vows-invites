@@ -1177,18 +1177,6 @@ a {
   background: linear-gradient(180deg, transparent 20%, rgba(15, 10, 6, .82) 100%)
 }
 
-.event-engagement {
-  background-image: url("@/assets/engagement.png")
-}
-
-.event-wedding {
-  background-image: url("@/assets/wedding.png")
-}
-
-.event-reception {
-  background-image: url("@/assets/invitation1-bg.png")
-}
-
 .event-list article.event-card>div {
   position: relative;
   z-index: 1
