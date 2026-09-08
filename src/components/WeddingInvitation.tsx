@@ -257,9 +257,9 @@ export function WeddingInvitation() {
             <div className="hero-copy" data-reveal>
               <p className="hero-subheading">WE ARE <br></br>GETTING MARRIED</p>
               <h1 className="hero-names">
-                <span className="script-title">Samjin</span>
+                <span className="script-title">Subith</span>
                 <span className="hero-amp">&amp;</span>
-                <span className="script-title">Jineesha</span>
+                <span className="script-title">Jijitha</span>
               </h1>
               <div className="hero-gold-divider">
                 <span className="divider-line" />
@@ -299,7 +299,7 @@ export function WeddingInvitation() {
               <p className="eyebrow">YOU ARE INVITED TO THE<br />WEDDING CEREMONY OF</p>
 
               <FloralMark />
-              <h2 className="script-title card-person-name">Samjin</h2>
+              <h2 className="script-title card-person-name">Subith</h2>
 
               <div className="parent-section">
                 <span className="parent-label">SON OF</span>
@@ -308,7 +308,7 @@ export function WeddingInvitation() {
 
               <p className="with-connector">With</p>
 
-              <h2 className="script-title card-person-name">Jineesha</h2>
+              <h2 className="script-title card-person-name">Jijitha</h2>
 
               <div className="parent-section">
                 <span className="parent-label">DAUGHTER OF</span>
@@ -389,7 +389,7 @@ export function WeddingInvitation() {
 
           <section className="letter-section">
             <div className={letterOpen ? "love-envelope is-open" : "love-envelope"} data-reveal>
-              <div className="love-letter"><p>Dear loved ones,</p><p>Every chapter of our lives carries a little of your love. Having you beside us as we begin this one would mean the world.</p><strong>With all our love,<br />Samjin &amp; Jineesha</strong></div>
+              <div className="love-letter"><p>Dear loved ones,</p><p>Every chapter of our lives carries a little of your love. Having you beside us as we begin this one would mean the world.</p><strong>With all our love,<br />Subith &amp; Jijitha</strong></div>
               <div className="love-envelope-front"><Button className="letter-seal" onClick={() => setLetterOpen(!letterOpen)} aria-label="Open our love letter"><Heart fill="currentColor" /></Button></div>
             </div>
             <p className="opening-hint">{letterOpen ? "A note from our hearts" : "Tap the heart to open our letter"}</p>
@@ -413,9 +413,9 @@ export function WeddingInvitation() {
           </section>
 
           <section className="final-section">
-            <img src={laughImage} alt="Samjin and Jineesha laughing together at dusk" width={1280} height={912} loading="lazy" />
+            <img src={laughImage} alt="Subith and Jijitha laughing together at dusk" width={1280} height={912} loading="lazy" />
             <div className="final-shade" />
-            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>14 · 02 · 2027</p><span>Samjin &amp; Jineesha</span></div>
+            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>14 · 02 · 2027</p><span>Subith &amp; Jijitha</span></div>
           </section>
 
           {lightbox !== null && (
