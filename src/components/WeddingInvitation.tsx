@@ -538,7 +538,7 @@ export function WeddingInvitation() {
 
 </section>
 
-          <section id="venue" className="venue-section paper-section">
+          {/* <section id="venue" className="venue-section paper-section">
             <div className="venue-image"><img src={heroImage} alt="Palace gardens at the wedding venue" width={1024} height={1536} loading="lazy" /></div>
             <div className="venue-copy" data-reveal><p className="eyebrow">Where we gather</p><h2>Rambagh Palace</h2><p>Bhawani Singh Road<br />Jaipur, Rajasthan 302005</p><p className="venue-note">A storied palace where old-world grace meets a garden glowing in candlelight.</p><Button asChild><a href="https://maps.google.com/?q=Rambagh+Palace+Jaipur" target="_blank" rel="noreferrer"><MapPin /> Get directions</a></Button></div>
           </section>
@@ -553,7 +553,7 @@ export function WeddingInvitation() {
                 ["Can I take photos?", "We invite you to be fully present during the ceremony. Afterward, capture every happy moment and tag #SaanviAndJai."],
               ].map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown /></summary><p>{answer}</p></details>)}
             </div>
-          </section>
+          </section> */}
 
           <section className="final-section">
             <img src={laughImage} alt="Samjin and Jineesha laughing together at dusk" width={1280} height={912} loading="lazy" />
