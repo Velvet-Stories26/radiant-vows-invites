@@ -387,13 +387,156 @@ export function WeddingInvitation() {
             </div>
           </section>
 
-          <section className="letter-section">
-            <div className={letterOpen ? "love-envelope is-open" : "love-envelope"} data-reveal>
-              <div className="love-letter"><p>Dear loved ones,</p><p>Every chapter of our lives carries a little of your love. Having you beside us as we begin this one would mean the world.</p><strong>With all our love,<br />Samjin &amp; Jineesha</strong></div>
-              <div className="love-envelope-front"><Button className="letter-seal" onClick={() => setLetterOpen(!letterOpen)} aria-label="Open our love letter"><Heart fill="currentColor" /></Button></div>
-            </div>
-            <p className="opening-hint">{letterOpen ? "A note from our hearts" : "Tap the heart to open our letter"}</p>
-          </section>
+         <section className="letter-section">
+
+  <div
+    className={`love-letter-wrapper ${
+      letterOpen ? "is-open" : ""
+    }`}
+    data-reveal
+  >
+
+    {/* =========================
+        ENVELOPE
+    ========================== */}
+
+    <div className="love-envelope">
+
+      {/* Letter hidden inside envelope */}
+      <div className="love-letter">
+
+        <div className="letter-border">
+
+          <div className="letter-top-decoration">
+            <span>✦</span>
+            <Heart fill="currentColor" />
+            <span>✦</span>
+          </div>
+
+          <span className="letter-eyebrow">
+            A little note from our hearts
+          </span>
+
+          <div className="letter-divider">
+            <span></span>
+            <Heart fill="currentColor" />
+            <span></span>
+          </div>
+
+          <p className="letter-greeting">
+            Dear loved ones,
+          </p>
+
+          <p className="letter-message">
+            Every chapter of our lives carries a little of your love.
+            Having you beside us as we begin this one would mean the world.
+          </p>
+
+          <div className="letter-divider small">
+            <span></span>
+            <Heart fill="currentColor" />
+            <span></span>
+          </div>
+
+          <p className="letter-closing">
+            With all our love,
+          </p>
+
+          <strong className="letter-names">
+            Subith &amp; Jijitha
+          </strong>
+
+          <div className="letter-flourish">
+            ✦
+          </div>
+
+        </div>
+
+      </div>
+
+
+      {/* =========================
+          ENVELOPE BODY
+      ========================== */}
+
+      <div className="love-envelope-front">
+
+        {/* Top flap */}
+        <div className="envelope-flap"></div>
+
+        {/* Left fold */}
+        <div className="envelope-left-fold"></div>
+
+        {/* Right fold */}
+        <div className="envelope-right-fold"></div>
+
+        {/* Bottom fold */}
+        <div className="envelope-bottom-fold"></div>
+
+
+        {/* Decorative corner branches */}
+        <div className="envelope-decoration left">
+          <span>❧</span>
+        </div>
+
+        <div className="envelope-decoration right">
+          <span>❧</span>
+        </div>
+
+
+        {/* Decorative stamp */}
+        <div className="envelope-stamp">
+          <span>✦</span>
+        </div>
+
+
+        {/* Heart seal */}
+        <Button
+          className="letter-seal"
+          onClick={() => setLetterOpen(!letterOpen)}
+          aria-label={
+            letterOpen
+              ? "Close our love letter"
+              : "Open our love letter"
+          }
+        >
+          <Heart fill="currentColor" />
+        </Button>
+
+      </div>
+
+    </div>
+
+
+    {/* =========================
+        INSTRUCTION
+    ========================== */}
+
+    <div className="letter-caption">
+
+      <span className="caption-line"></span>
+
+      <div className="caption-content">
+
+        <span className="caption-icon">
+          {letterOpen ? "✦" : "☝"}
+        </span>
+
+        <p>
+          {letterOpen
+            ? "A little wish from our hearts"
+            : "Click the heart to open our letter"}
+        </p>
+
+      </div>
+
+      <span className="caption-line"></span>
+
+    </div>
+
+  </div>
+
+</section>
 
           <section id="venue" className="venue-section paper-section">
             <div className="venue-image"><img src={heroImage} alt="Palace gardens at the wedding venue" width={1024} height={1536} loading="lazy" /></div>
