@@ -443,7 +443,7 @@ export function WeddingInvitation() {
           </p>
 
           <strong className="letter-names">
-            Subith &amp; Jijitha
+            Samjin &amp; Jineesha
           </strong>
 
           <div className="letter-flourish">
