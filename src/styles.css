@@ -1214,74 +1214,885 @@ a {
   color: color-mix(in oklab, #fff 88%, transparent)
 }
 
+/* =====================================================
+   LOVE LETTER SECTION
+===================================================== */
+
 .letter-section {
-  padding: 8rem 1.2rem 5rem;
+  position: relative;
+
+  min-height: 760px;
+
+  padding: 7rem 1.2rem 6rem;
+
+  display: flex;
+  justify-content: center;
+
   text-align: center;
-  background: var(--secondary);
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(255, 255, 255, 0.55),
+      transparent 42%
+    ),
+    var(--secondary);
+
   color: var(--primary-foreground);
-  min-height: 620px
+
+  overflow: hidden;
 }
+
+
+/* =====================================================
+   SOFT DECORATION
+===================================================== */
+
+.letter-section::before {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  top: -280px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border: 1px solid
+    color-mix(
+      in oklab,
+      var(--primary) 12%,
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+
+.letter-section::after {
+  content: "✦";
+
+  position: absolute;
+
+  bottom: 8%;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 1rem;
+
+  color: var(--primary);
+
+  opacity: 0.35;
+}
+
+
+/* =====================================================
+   MAIN WRAPPER
+===================================================== */
+
+.love-letter-wrapper {
+  position: relative;
+
+  width: min(100%, 500px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* =====================================================
+   ENVELOPE
+===================================================== */
 
 .love-envelope {
   position: relative;
-  max-width: 25rem;
-  aspect-ratio: 4/3;
-  margin: 5rem auto 0
+
+  width: min(92vw, 390px);
+
+  aspect-ratio: 1.48 / 1;
+
+  margin-top: 3.5rem;
+
+  perspective: 1400px;
 }
 
-.love-envelope-front {
-  position: absolute;
-  inset: 0;
-  background: var(--secondary);
-  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
-  z-index: 2;
-  box-shadow: 0 25px 50px color-mix(in oklab, var(--night) 45%, transparent)
-}
 
-.love-envelope-front:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--background);
-  clip-path: polygon(0 100%, 50% 46%, 100% 100%)
-}
-
-.letter-seal {
-  position: absolute;
-  z-index: 3;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  width: 4rem;
-  height: 4rem;
-  padding: 0;
-  background: var(--primary);
-  color: var(--primary-foreground)
-}
+/* =====================================================
+   LETTER
+===================================================== */
 
 .love-letter {
   position: absolute;
+
+  left: 6%;
+  right: 6%;
+
+  top: 5%;
+
+  height: 90%;
+
   z-index: 1;
-  inset: 3% 7%;
-  padding: 2rem 1.5rem;
-  background: var(--paper);
+
+  padding: 1.8rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf5,
+      var(--paper)
+    );
+
   color: var(--foreground);
-  font: italic 1rem/1.5 var(--font-serif);
-  transition: transform 1s cubic-bezier(.2, .8, .2, 1)
+
+  border-radius: 5px;
+
+  border: 1px solid
+    rgba(170, 125, 50, 0.3);
+
+  box-shadow:
+    0 12px 35px rgba(70, 45, 15, 0.16),
+    inset 0 0 20px rgba(180, 140, 70, 0.05);
+
+  font-family: var(--font-serif);
+
+  transform: translateY(0);
+
+  transition:
+    transform 1.15s
+      cubic-bezier(.2, .8, .2, 1),
+    box-shadow 1s ease;
 }
 
-.love-letter strong {
-  color: var(--primary)
+
+/* =====================================================
+   LETTER INNER BORDER
+===================================================== */
+
+.letter-border {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 1.1rem;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid
+    rgba(170, 125, 50, 0.22);
 }
 
-.love-envelope.is-open .love-letter {
-  transform: translateY(-48%);
-  z-index: 3
+
+/* =====================================================
+   LETTER TOP DECORATION
+===================================================== */
+
+.letter-top-decoration {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.6rem;
+
+  margin-bottom: 0.4rem;
+
+  color: var(--primary);
+
+  opacity: 0.7;
 }
 
-.love-envelope.is-open .letter-seal {
-  top: 100%
+
+.letter-top-decoration span {
+  font-size: 0.45rem;
+}
+
+
+.letter-top-decoration svg {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+
+/* =====================================================
+   LETTER EYEBROW
+===================================================== */
+
+.letter-eyebrow {
+  display: block;
+
+  margin-bottom: 0.4rem;
+
+  font-family: var(--font-sans);
+
+  font-size: 0.52rem;
+
+  letter-spacing: 0.25em;
+
+  text-transform: uppercase;
+
+  color: var(--primary);
+
+  opacity: 0.8;
+}
+
+
+/* =====================================================
+   DIVIDERS
+===================================================== */
+
+.letter-divider {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.45rem;
+
+  width: 70%;
+
+  margin: 0.35rem auto 0.7rem;
+}
+
+
+.letter-divider span {
+  height: 1px;
+
+  flex: 1;
+
+  background: var(--primary);
+
+  opacity: 0.3;
+}
+
+
+.letter-divider svg {
+  width: 0.65rem;
+  height: 0.65rem;
+
+  color: var(--primary);
+}
+
+
+.letter-divider.small {
+  width: 45%;
+
+  margin-top: 0.6rem;
+}
+
+
+/* =====================================================
+   LETTER TEXT
+===================================================== */
+
+.letter-greeting {
+  margin: 0 0 0.45rem;
+
+  font-size: 0.95rem;
+
+  font-style: italic;
+}
+
+
+.letter-message {
+  max-width: 280px;
+
+  margin: 0;
+
+  font-size: 0.7rem;
+
+  line-height: 1.6;
+
+  font-style: italic;
+
+  opacity: 0.85;
+}
+
+
+/* =====================================================
+   SIGNATURE
+===================================================== */
+
+.letter-closing {
+  margin: 0.35rem 0 0;
+
+  font-size: 0.72rem;
+
+  font-style: italic;
+}
+
+
+.letter-names {
+  margin-top: 0.15rem;
+
+  font-size: 1.1rem;
+
+  font-weight: 500;
+
+  font-style: italic;
+
+  color: var(--primary);
+}
+
+
+/* =====================================================
+   LETTER FLOURISH
+===================================================== */
+
+.letter-flourish {
+  margin-top: 0.35rem;
+
+  font-size: 0.65rem;
+
+  color: var(--primary);
+
+  opacity: 0.6;
+}
+
+
+/* =====================================================
+   ENVELOPE FRONT
+===================================================== */
+
+.love-envelope-front {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  overflow: visible;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--paper),
+      var(--secondary)
+    );
+
+  border-radius: 14px;
+
+  border: 1px solid
+    rgba(170, 125, 50, 0.25);
+
+  box-shadow:
+    0 22px 45px rgba(65, 40, 15, 0.2),
+    0 5px 12px rgba(65, 40, 15, 0.08);
+
+  clip-path: polygon(
+    0 0,
+    50% 55%,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+}
+
+
+/* =====================================================
+   ENVELOPE FLAP
+===================================================== */
+
+.envelope-flap {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 4;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffdf5,
+      color-mix(
+        in oklab,
+        var(--paper) 85%,
+        var(--primary)
+      )
+    );
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    50% 55%
+  );
+
+  transform-origin: top center;
+
+  transform: rotateX(0deg);
+
+  transition:
+    transform 1s
+    cubic-bezier(.2, .8, .2, 1);
+
+  backface-visibility: hidden;
+
+  filter:
+    drop-shadow(
+      0 4px 5px rgba(70, 40, 10, 0.1)
+    );
+}
+
+
+/* =====================================================
+   ENVELOPE FOLDS
+===================================================== */
+
+.envelope-left-fold {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+
+  clip-path: polygon(
+    0 0,
+    50% 55%,
+    0 100%
+  );
+}
+
+
+.envelope-right-fold {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  background:
+    linear-gradient(
+      215deg,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+
+  clip-path: polygon(
+    100% 0,
+    50% 55%,
+    100% 100%
+  );
+}
+
+
+.envelope-bottom-fold {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(255, 255, 255, 0.22)
+    );
+
+  clip-path: polygon(
+    0 100%,
+    50% 45%,
+    100% 100%
+  );
+}
+
+
+/* =====================================================
+   DECORATIVE CORNERS
+===================================================== */
+
+.envelope-decoration {
+  position: absolute;
+
+  z-index: 4;
+
+  bottom: 12%;
+
+  color: var(--primary);
+
+  font-family: var(--font-serif);
+
+  font-size: 2rem;
+
+  opacity: 0.5;
+
+  pointer-events: none;
+}
+
+
+.envelope-decoration.left {
+  left: 7%;
+
+  transform: scaleX(-1);
+}
+
+
+.envelope-decoration.right {
+  right: 7%;
+}
+
+
+/* =====================================================
+   STAMP
+===================================================== */
+
+.envelope-stamp {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 8%;
+  right: 7%;
+
+  width: 2.6rem;
+  height: 2.6rem;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #d8b24b,
+      #b88b25
+    );
+
+  color: #fff6d7;
+
+  border-radius: 4px;
+
+  transform: rotate(6deg);
+
+  box-shadow:
+    0 5px 10px rgba(70, 40, 10, 0.16);
+
+  border: 2px solid
+    rgba(255, 255, 255, 0.4);
+}
+
+
+.envelope-stamp span {
+  font-size: 0.9rem;
+}
+
+
+/* =====================================================
+   HEART SEAL
+===================================================== */
+
+.letter-seal {
+  position: absolute;
+
+  z-index: 10;
+
+  top: 52%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  width: 4.2rem;
+  height: 4.2rem;
+
+  padding: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #e5c86d,
+      #b78a25
+    );
+
+  color: #fff7dc;
+
+  border: 4px solid
+    rgba(255, 250, 225, 0.9);
+
+  box-shadow:
+    0 8px 18px rgba(75, 45, 10, 0.3),
+    0 0 0 1px
+      rgba(160, 115, 35, 0.45);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.35s ease,
+    top 1s
+      cubic-bezier(.2, .8, .2, 1),
+    box-shadow 0.35s ease;
+}
+
+
+.letter-seal:hover {
+  transform:
+    translate(-50%, -50%)
+    scale(1.08);
+
+  box-shadow:
+    0 10px 25px rgba(75, 45, 10, 0.32),
+    0 0 0 7px
+      rgba(180, 140, 50, 0.08);
+}
+
+
+.letter-seal svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+
+/* =====================================================
+   CLOSED STATE
+===================================================== */
+
+.love-letter-wrapper:not(.is-open)
+  .love-letter {
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   OPEN STATE
+===================================================== */
+
+.love-letter-wrapper.is-open
+  .love-letter {
+  z-index: 6;
+
+  transform: translateY(-62%);
+
+  box-shadow:
+    0 30px 60px rgba(65, 40, 15, 0.22);
+}
+
+
+.love-letter-wrapper.is-open
+  .envelope-flap {
+  transform:
+    rotateX(180deg);
+}
+
+
+.love-letter-wrapper.is-open
+  .letter-seal {
+  top: 100%;
+}
+
+
+/* =====================================================
+   CAPTION BELOW ENVELOPE
+===================================================== */
+
+.letter-caption {
+  width: min(92vw, 430px);
+
+  margin-top: 4rem;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.8rem;
+
+  transition:
+    transform 0.5s ease;
+}
+
+
+.caption-line {
+  width: 38px;
+
+  height: 1px;
+
+  flex-shrink: 0;
+
+  background: var(--primary);
+
+  opacity: 0.4;
+}
+
+
+.caption-content {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.5rem;
+}
+
+
+.caption-icon {
+  font-size: 0.9rem;
+
+  color: var(--primary);
+
+  animation:
+    gentle-bounce 2s ease-in-out infinite;
+}
+
+
+.letter-caption p {
+  margin: 0;
+
+  font-family: var(--font-serif);
+
+  font-size: 0.85rem;
+
+  font-style: italic;
+
+  letter-spacing: 0.02em;
+
+  color:
+    color-mix(
+      in oklab,
+      var(--primary-foreground) 85%,
+      transparent
+    );
+}
+
+
+/* =====================================================
+   CAPTION ANIMATION
+===================================================== */
+
+@keyframes gentle-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .letter-section {
+    min-height: 680px;
+
+    padding:
+      5rem
+      1rem
+      5rem;
+  }
+
+
+  .love-envelope {
+    width: min(92vw, 350px);
+
+    margin-top: 3rem;
+  }
+
+
+  .love-letter {
+    padding: 1.2rem;
+  }
+
+
+  .letter-border {
+    padding: 0.8rem;
+  }
+
+
+  .letter-eyebrow {
+    font-size: 0.45rem;
+
+    letter-spacing: 0.2em;
+  }
+
+
+  .letter-greeting {
+    font-size: 0.85rem;
+  }
+
+
+  .letter-message {
+    max-width: 230px;
+
+    font-size: 0.62rem;
+
+    line-height: 1.5;
+  }
+
+
+  .letter-closing {
+    font-size: 0.65rem;
+  }
+
+
+  .letter-names {
+    font-size: 0.95rem;
+  }
+
+
+  .letter-seal {
+    width: 3.7rem;
+    height: 3.7rem;
+  }
+
+
+  .envelope-stamp {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+
+  .letter-caption {
+    margin-top: 3.5rem;
+
+    gap: 0.5rem;
+  }
+
+
+  .caption-line {
+    width: 22px;
+  }
+
+
+  .letter-caption p {
+    font-size: 0.72rem;
+  }
+
 }
 
 .venue-section {

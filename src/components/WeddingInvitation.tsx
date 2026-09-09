@@ -261,9 +261,9 @@ export function WeddingInvitation() {
             <div className="hero-copy" data-reveal>
               <p className="hero-subheading">WE ARE <br></br>GETTING MARRIED</p>
               <h1 className="hero-names">
-                <span className="script-title">Subith</span>
+                <span className="script-title">Samjin</span>
                 <span className="hero-amp">&amp;</span>
-                <span className="script-title">Jijitha</span>
+                <span className="script-title">Jineesha</span>
               </h1>
               <div className="hero-gold-divider">
                 <span className="divider-line" />
@@ -303,7 +303,7 @@ export function WeddingInvitation() {
               <p className="eyebrow">YOU ARE INVITED TO THE<br />WEDDING CEREMONY OF</p>
 
               <FloralMark />
-              <h2 className="script-title card-person-name">Subith</h2>
+              <h2 className="script-title card-person-name">Samjin</h2>
 
               <div className="parent-section">
                 <span className="parent-label">SON OF</span>
@@ -312,7 +312,7 @@ export function WeddingInvitation() {
 
               <p className="with-connector">With</p>
 
-              <h2 className="script-title card-person-name">Jijitha</h2>
+              <h2 className="script-title card-person-name">Jineesha</h2>
 
               <div className="parent-section">
                 <span className="parent-label">DAUGHTER OF</span>
@@ -387,19 +387,162 @@ export function WeddingInvitation() {
             <div className="event-list">
               <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Friday · February 12</p><h3>Engagement</h3><p>7:00 in the evening · The Garden Terrace</p><small>An evening of blessings, laughter & celebration</small></div></article>
               <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Sunday · February 14</p><h3>Wedding</h3><p>5:30 in the evening · The Palace Courtyard</p><small>Baraat begins at 4:30 · Festive traditional attire</small></div></article>
-              <article className="event-card event-reception" style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
+              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
             </div>
           </section>
 
-          <section className="letter-section">
-            <div className={letterOpen ? "love-envelope is-open" : "love-envelope"} data-reveal>
-              <div className="love-letter"><p>Dear loved ones,</p><p>Every chapter of our lives carries a little of your love. Having you beside us as we begin this one would mean the world.</p><strong>With all our love,<br />Subith &amp; Jijitha</strong></div>
-              <div className="love-envelope-front"><Button className="letter-seal" onClick={() => setLetterOpen(!letterOpen)} aria-label="Open our love letter"><Heart fill="currentColor" /></Button></div>
-            </div>
-            <p className="opening-hint">{letterOpen ? "A note from our hearts" : "Tap the heart to open our letter"}</p>
-          </section>
+         <section className="letter-section">
 
-          <section id="venue" className="venue-section paper-section">
+  <div
+    className={`love-letter-wrapper ${
+      letterOpen ? "is-open" : ""
+    }`}
+    data-reveal
+  >
+
+    {/* =========================
+        ENVELOPE
+    ========================== */}
+
+    <div className="love-envelope">
+
+      {/* Letter hidden inside envelope */}
+      <div className="love-letter">
+
+        <div className="letter-border">
+
+          <div className="letter-top-decoration">
+            <span>✦</span>
+            <Heart fill="currentColor" />
+            <span>✦</span>
+          </div>
+
+          <span className="letter-eyebrow">
+            A little note from our hearts
+          </span>
+
+          <div className="letter-divider">
+            <span></span>
+            <Heart fill="currentColor" />
+            <span></span>
+          </div>
+
+          <p className="letter-greeting">
+            Dear loved ones,
+          </p>
+
+          <p className="letter-message">
+            Every chapter of our lives carries a little of your love.
+            Having you beside us as we begin this one would mean the world.
+          </p>
+
+          <div className="letter-divider small">
+            <span></span>
+            <Heart fill="currentColor" />
+            <span></span>
+          </div>
+
+          <p className="letter-closing">
+            With all our love,
+          </p>
+
+          <strong className="letter-names">
+            Samjin &amp; Jineesha
+          </strong>
+
+          <div className="letter-flourish">
+            ✦
+          </div>
+
+        </div>
+
+      </div>
+
+
+      {/* =========================
+          ENVELOPE BODY
+      ========================== */}
+
+      <div className="love-envelope-front">
+
+        {/* Top flap */}
+        <div className="envelope-flap"></div>
+
+        {/* Left fold */}
+        <div className="envelope-left-fold"></div>
+
+        {/* Right fold */}
+        <div className="envelope-right-fold"></div>
+
+        {/* Bottom fold */}
+        <div className="envelope-bottom-fold"></div>
+
+
+        {/* Decorative corner branches */}
+        <div className="envelope-decoration left">
+          <span>❧</span>
+        </div>
+
+        <div className="envelope-decoration right">
+          <span>❧</span>
+        </div>
+
+
+        {/* Decorative stamp */}
+        <div className="envelope-stamp">
+          <span>✦</span>
+        </div>
+
+
+        {/* Heart seal */}
+        <Button
+          className="letter-seal"
+          onClick={() => setLetterOpen(!letterOpen)}
+          aria-label={
+            letterOpen
+              ? "Close our love letter"
+              : "Open our love letter"
+          }
+        >
+          <Heart fill="currentColor" />
+        </Button>
+
+      </div>
+
+    </div>
+
+
+    {/* =========================
+        INSTRUCTION
+    ========================== */}
+
+    <div className="letter-caption">
+
+      <span className="caption-line"></span>
+
+      <div className="caption-content">
+
+        <span className="caption-icon">
+          {letterOpen ? "✦" : "☝"}
+        </span>
+
+        <p>
+          {letterOpen
+            ? "A little wish from our hearts"
+            : "Click the heart to open our letter"}
+        </p>
+
+      </div>
+
+      <span className="caption-line"></span>
+
+    </div>
+
+  </div>
+
+</section>
+
+          {/* <section id="venue" className="venue-section paper-section">
             <div className="venue-image"><img src={heroImage} alt="Palace gardens at the wedding venue" width={1024} height={1536} loading="lazy" /></div>
             <div className="venue-copy" data-reveal><p className="eyebrow">Where we gather</p><h2>Rambagh Palace</h2><p>Bhawani Singh Road<br />Jaipur, Rajasthan 302005</p><p className="venue-note">A storied palace where old-world grace meets a garden glowing in candlelight.</p><Button asChild><a href="https://maps.google.com/?q=Rambagh+Palace+Jaipur" target="_blank" rel="noreferrer"><MapPin /> Get directions</a></Button></div>
           </section>
@@ -414,12 +557,12 @@ export function WeddingInvitation() {
                 ["Can I take photos?", "We invite you to be fully present during the ceremony. Afterward, capture every happy moment and tag #SaanviAndJai."],
               ].map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown /></summary><p>{answer}</p></details>)}
             </div>
-          </section>
+          </section> */}
 
           <section className="final-section">
-            <img src={laughImage} alt="Subith and Jijitha laughing together at dusk" width={1280} height={912} loading="lazy" />
+            <img src={laughImage} alt="Samjin and Jineesha laughing together at dusk" width={1280} height={912} loading="lazy" />
             <div className="final-shade" />
-            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>14 · 02 · 2027</p><span>Subith &amp; Jijitha</span></div>
+            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>14 · 02 · 2027</p><span>Samjin &amp; Jineesha</span></div>
           </section>
 
           {lightbox !== null && (
