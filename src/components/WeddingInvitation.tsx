@@ -18,7 +18,7 @@ import heroImage from "@/assets/couple-hero.jpg";
 import walkImage from "@/assets/memory-walk.jpg";
 import ringsImage from "@/assets/memory-rings.jpg";
 import laughImage from "@/assets/memory-laugh.jpg";
-import envelopeImage from "@/assets/envelope.png";
+import startAnimeVideo from "@/assets/start-anime.mp4";
 import weddingAnimation from "@/assets/wedding-animation.mp4";
 import invitationBg from "@/assets/invitaion-bg.png";
 import engagementImage from "@/assets/engagement.png";
@@ -151,6 +151,7 @@ export function WeddingInvitation() {
   const [revealedDates, setRevealedDates] = useState(0);
   const audioRef = useRef<{ context: AudioContext; oscillators: OscillatorNode[] } | null>(null);
   const swipeStart = useRef(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -199,9 +200,12 @@ export function WeddingInvitation() {
 
   const handleOpen = () => {
     setOpened(true);
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => console.log("Video playback failed"));
+    }
     setTimeout(() => {
       setContentRevealed(true);
-    }, 1800); // Wait for the envelope scale-out animation
+    }, 500); // Minimal delay for smooth transition
   };
 
   const moveLightbox = (direction: number) => {
@@ -242,7 +246,7 @@ export function WeddingInvitation() {
         <section id="invitation" className={opened ? "opening-screen is-open" : "opening-screen"}>
           <div className="opening-glow" />
           <div className="image-envelope-wrap">
-            <img src={envelopeImage} alt="Wedding Invitation Envelope" className="envelope-img" />
+            <video ref={videoRef} src={startAnimeVideo} muted playsInline className="envelope-img" />
             <button className="image-wax-seal" onClick={handleOpen} aria-label="Open the wedding invitation" />
           </div>
           <p className="opening-hint">Tap the seal to open</p>
