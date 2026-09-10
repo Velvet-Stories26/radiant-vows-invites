@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import confetti from "canvas-confetti";
 import {
   CalendarDays,
   ChevronDown,
@@ -27,7 +28,7 @@ import receptionImage from "@/assets/invitaion1-bg.png";
 import topTornEdge from "@/assets/top-torn-svg.svg";
 import bottomTornEdge from "@/assets/bottom-torn-svg.svg";
 
-const weddingDate = new Date("2027-02-14T17:30:00+05:30");
+const weddingDate = new Date("2026-10-07T17:30:00+05:30");
 const gallery = [
   { src: heroImage, alt: "Saanvi and Jai in a palace garden", ratio: "portrait" },
   { src: ringsImage, alt: "Henna, heirloom rings and jasmine", ratio: "landscape" },
@@ -168,6 +169,36 @@ export function WeddingInvitation() {
   }, []);
 
   useEffect(() => {
+    if (revealedDates === 3) {
+      const duration = 3000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 100 };
+
+      const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+      const interval: any = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+        });
+        confetti({
+          ...defaults,
+          particleCount,
+          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+        });
+      }, 250);
+    }
+  }, [revealedDates]);
+
+  useEffect(() => {
     const timer = window.setInterval(() => setSlide((value) => (value + 1) % gallery.length), 4800);
     return () => window.clearInterval(timer);
   }, []);
@@ -287,15 +318,15 @@ export function WeddingInvitation() {
             <h2>A golden day awaits</h2>
             <p className="section-intro">Gently scratch each golden panel to reveal when our forever begins.</p>
             <div className="scratch-grid">
-              <ScratchBox label="Day" value="14" onReveal={() => setRevealedDates((count) => count + 1)} />
-              <ScratchBox label="Month" value="FEB" onReveal={() => setRevealedDates((count) => count + 1)} />
-              <ScratchBox label="Year" value="2027" onReveal={() => setRevealedDates((count) => count + 1)} />
+              <ScratchBox label="Day" value="07" onReveal={() => setRevealedDates((count) => count + 1)} />
+              <ScratchBox label="Month" value="OCT" onReveal={() => setRevealedDates((count) => count + 1)} />
+              <ScratchBox label="Year" value="2026" onReveal={() => setRevealedDates((count) => count + 1)} />
             </div>
             {revealedDates === 3 && (
               <div className="date-celebration" role="status">
                 <div className="celebration-sparkles" aria-hidden="true">✦ ✧ ✦</div>
                 <strong>Our forever begins</strong>
-                <span>14 February 2027</span>
+                <span>07 October 2026</span>
               </div>
             )}
           </section>
@@ -318,7 +349,7 @@ export function WeddingInvitation() {
 
               <div className="parent-section">
                 <span className="parent-label">DAUGHTER OF</span>
-                <strong className="parent-names">MR. VIJITUS &amp; MRS. MARYTHASY</strong>
+                <strong className="parent-names">MR. JAMES &amp; MRS. MARYAS MARY</strong>
               </div>
 
               <div className="card-custom-message">
@@ -328,8 +359,8 @@ export function WeddingInvitation() {
                 </p>
               </div>
 
-              <strong className="card-event-date">SUNDAY · 14 FEBRUARY · 2027</strong>
-              <span className="card-event-venue">at The Rambagh Palace, Jaipur</span>
+              <strong className="card-event-date">WEDNESDAY · 07 October · 2026</strong>
+              <span className="card-event-venue">at St.John of the Cross Church, Siluvaipuram</span>
             </div>
           </section>
 
@@ -387,9 +418,9 @@ export function WeddingInvitation() {
             <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
             <div data-reveal><p className="eyebrow">The celebrations</p><h2>Join us for</h2></div>
             <div className="event-list">
-              <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Friday · February 12</p><h3>Engagement</h3><p>7:00 in the evening · The Garden Terrace</p><small>An evening of blessings, laughter & celebration</small></div></article>
-              <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Sunday · February 14</p><h3>Wedding</h3><p>5:30 in the evening · The Palace Courtyard</p><small>Baraat begins at 4:30 · Festive traditional attire</small></div></article>
-              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Saturday · February 13</p><h3>Reception</h3><p>7:00 in the evening · The Mughal Gardens</p><small>Cocktails, dinner & dancing · Formal Indian attire</small></div></article>
+              <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Monday · October 05</p><h3>Engagement</h3><p>3:00 in the evening · Christ the King Community Hall, Paruthiyoor</p><small>An evening of blessings, laughter & celebration</small></div></article>
+              <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Wednesday · October 07</p><h3>Wedding</h3><p>11:00 in the morning · St.John of the Cross Church, Siluvaipuram</p><small>Baraat begins at 4:30 · Festive traditional attire</small></div></article>
+              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Wednesday · October 07</p><h3>Reception</h3><p>1:00 in the Afternoon · J.C. Community Hall, Siluvaipuram</p><small>Celebration with cocktails, dinner & dancing · Formal Indian attire</small></div></article>
             </div>
           </section>
 
@@ -564,7 +595,7 @@ export function WeddingInvitation() {
           <section className="final-section">
             <img src={laughImage} alt="Samjin and Jineesha laughing together at dusk" width={1280} height={912} loading="lazy" />
             <div className="final-shade" />
-            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>14 · 02 · 2027</p><span>Samjin &amp; Jineesha</span></div>
+            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>07 · 10 · 2026</p><span>Samjin &amp; Jineesha</span></div>
           </section>
 
           {lightbox !== null && (
