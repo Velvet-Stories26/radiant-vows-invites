@@ -201,11 +201,13 @@ export function WeddingInvitation() {
   const handleOpen = () => {
     setOpened(true);
     if (videoRef.current) {
-      videoRef.current.play().catch(() => console.log("Video playback failed"));
-    }
-    setTimeout(() => {
+      videoRef.current.play().catch(() => {
+        console.log("Video playback failed");
+        setContentRevealed(true);
+      });
+    } else {
       setContentRevealed(true);
-    }, 500); // Minimal delay for smooth transition
+    }
   };
 
   const moveLightbox = (direction: number) => {
@@ -246,8 +248,8 @@ export function WeddingInvitation() {
         <section id="invitation" className={opened ? "opening-screen is-open" : "opening-screen"}>
           <div className="opening-glow" />
           <div className="image-envelope-wrap">
-            <video ref={videoRef} src={startAnimeVideo} muted playsInline className="envelope-img" />
-            <button className="image-wax-seal" onClick={handleOpen} aria-label="Open the wedding invitation" />
+            <video ref={videoRef} src={startAnimeVideo} muted playsInline className="envelope-img" onEnded={() => setContentRevealed(true)} />
+            {!opened && <button className="image-wax-seal" onClick={handleOpen} aria-label="Open the wedding invitation" />}
           </div>
           <p className="opening-hint">Tap the seal to open</p>
         </section>

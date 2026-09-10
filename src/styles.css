@@ -292,9 +292,11 @@ a {
 }
 
 .image-envelope-wrap {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 10;
-  width: min(90vw, 600px);
+  width: 100vw;
+  height: 100svh;
   transition: transform 1.5s cubic-bezier(.2, .8, .2, 1), opacity 1.5s ease;
   cursor: pointer;
   display: flex;
@@ -305,8 +307,8 @@ a {
 
 .envelope-img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
   transition: transform 0.5s ease;
 }
@@ -316,35 +318,9 @@ a {
 }
 
 .is-open .image-envelope-wrap {
-  animation: envelope-open 1.8s cubic-bezier(.7, 0, .3, 1) forwards;
   pointer-events: none;
 }
-
-@keyframes envelope-open {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-    filter: brightness(1);
-  }
-
-  30% {
-    transform: scale(0.95);
-    opacity: 1;
-    filter: brightness(1.2);
-  }
-
-  60% {
-    transform: scale(1.5);
-    opacity: 1;
-    filter: brightness(1.5);
-  }
-
-  100% {
-    transform: scale(3);
-    opacity: 0;
-    filter: brightness(2);
-  }
-}
+  
 
 .image-wax-seal {
   position: absolute;
@@ -364,14 +340,15 @@ a {
 
 .opening-hint {
   position: absolute;
-  bottom: 8%;
+  top: 65%;
+  bottom: auto;
   z-index: 10;
   font: 500 .7rem var(--font-sans);
   text-transform: uppercase;
   letter-spacing: .25em;
-  color: var(--champagne);
-  opacity: 0.8;
-  animation: pulse-hint 2s infinite;
+  /* color: rgb(226, 236, 85); */
+  /* opacity: 0.8; */
+  animation: pulse-hint 3s infinite;
 }
 
 @keyframes pulse-hint {
