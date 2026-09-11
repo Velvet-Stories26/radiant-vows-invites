@@ -298,7 +298,7 @@ export function WeddingInvitation() {
               <h1 className="hero-names">
                 <span className="script-title">Subin</span>
                 <span className="hero-amp">&amp;</span>
-                <span className="script-title">Siluvaidhasy</span>
+                <span className="script-title">Siluvaidhasi</span>
               </h1>
               <div className="hero-gold-divider">
                 <span className="divider-line" />
@@ -347,11 +347,11 @@ export function WeddingInvitation() {
 
               <p className="with-connector">With</p>
 
-              <h2 className="script-title card-person-name">Siluvaidhasy</h2>
+              <h2 className="script-title card-person-name">Siluvaidhasi</h2>
 
               <div className="parent-section">
                 <span className="parent-label">DAUGHTER OF</span>
-                <strong className="parent-names">MR. JAMES &amp; MRS. MARYAS MARY</strong>
+                <strong className="parent-names">MR. SILVESTER &amp; MRS. AROGIAMARY</strong>
               </div>
 
               <div className="card-custom-message">
@@ -361,7 +361,7 @@ export function WeddingInvitation() {
                 </p>
               </div>
 
-              <strong className="card-event-date">WEDNESDAY · 07 October · 2026</strong>
+              <strong className="card-event-date">WEDNESDAY · 14 October · 2026</strong>
               <span className="card-event-venue">at St.John of the Cross Church, Siluvaipuram</span>
             </div>
           </section>
@@ -420,13 +420,18 @@ export function WeddingInvitation() {
             <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
             <div data-reveal><p className="eyebrow">The celebrations</p><h2>Join us for</h2></div>
             <div className="event-list">
-              <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Monday · October 05</p><h3>Engagement</h3><p>3:00 in the evening · Christ the King Community Hall, Paruthiyoor</p><small>An evening of blessings, laughter & celebration</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/xC5SwNJ12MVq6b526?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
-              <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Wednesday · October 07</p><h3>Wedding</h3><p>11:00 in the morning · St.John of the Cross Church, Siluvaipuram</p><small>Baraat begins at 4:30 · Festive traditional attire</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/tgEoGPykhqHFAnWm8?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
-              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Wednesday · October 07</p><h3>Reception</h3><p>1:00 in the Afternoon · J.C. Community Hall, Siluvaipuram</p><small>Celebration with cocktails, dinner & dancing · Formal Indian attire</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/vwfTitZmioioe1EC8?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
+              <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Tuesday · October 13</p><h3>Engagement</h3><p>3:00 in the evening · J.C. Community Hall, Siluvaipuram</p><small>An evening of blessings, laughter & celebration</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/vwfTitZmioioe1EC8?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
+              <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Wednesday · October 14</p><h3>Wedding</h3><p>11:00 in the morning · St.Mary's Church, Vallavilai</p><small>Baraat begins at 10:00 AM · Church wedding at 11:00 AM</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/yDX9gXNNEFK3rAhq7?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
+              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Wednesday · October 14</p><h3>Reception</h3><p>1:00 in the Afternoon ·  St.Mary's Community Hall, Vallavilai</p><small>Celebration with cocktails, dinner & dancing · Formal Indian attire</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/hgjhZnmWVZ2ZWevT6?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
             </div>
           </section>
 
-         <section className="letter-section">
+         <section className={`letter-section ${letterOpen ? "is-open" : ""}`}>
+          <div className="letter-header" data-reveal>
+            <p className="eyebrow">A little note for you</p>
+            <h2>Words From Our Hearts</h2>
+          </div>
+
           <div className={`image-letter-wrapper ${letterOpen ? "is-open" : ""}`} data-reveal>
             {/* Closed envelope image */}
             <div className="letter-closed-img">
@@ -436,6 +441,7 @@ export function WeddingInvitation() {
                   className="letter-img-seal"
                   onClick={() => setLetterOpen(true)}
                   aria-label="Open our love letter"
+                  title="Click seal to open letter"
                 />
               )}
             </div>
@@ -443,6 +449,14 @@ export function WeddingInvitation() {
             {/* Open envelope image */}
             <div className="letter-open-img">
               <img src={letterOpenImage} alt="Opened love letter with heartfelt message" width={1200} height={1200} />
+              {letterOpen && (
+                <button
+                  className="letter-open-seal"
+                  onClick={() => setLetterOpen(false)}
+                  aria-label="Close our love letter"
+                  title="Click seal to close letter"
+                />
+              )}
             </div>
 
             {/* Caption */}
@@ -450,7 +464,7 @@ export function WeddingInvitation() {
               <span className="caption-line" />
               <div className="caption-content">
                 <span className="caption-icon">{letterOpen ? "✦" : "☝"}</span>
-                <p>{letterOpen ? "A little wish from our hearts" : "Tap the seal to open our letter"}</p>
+                <p>{letterOpen ? "Tap the seal to close letter" : "Tap the seal to open our letter"}</p>
               </div>
               <span className="caption-line" />
             </div>
@@ -475,9 +489,9 @@ export function WeddingInvitation() {
           </section> */}
 
           <section className="final-section">
-            <img src={laughImage} alt="Subin and Siluvaidhasy laughing together at dusk" width={1280} height={912} loading="lazy" />
+            <img src={laughImage} alt="Subin and Siluvaidhasi laughing together at dusk" width={1280} height={912} loading="lazy" />
             <div className="final-shade" />
-            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>07 · 10 · 2026</p><span>Subin &amp; Siluvaidhasy</span></div>
+            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>07 · 10 · 2026</p><span>Subin &amp; Siluvaidhasi</span></div>
           </section>
 
           {lightbox !== null && (
