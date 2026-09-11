@@ -27,6 +27,8 @@ import weddingImage from "@/assets/wedding.png";
 import receptionImage from "@/assets/invitaion1-bg.png";
 import topTornEdge from "@/assets/top-torn-svg.svg";
 import bottomTornEdge from "@/assets/bottom-torn-svg.svg";
+import letterClosedImage from "@/assets/letter.png";
+import letterOpenImage from "@/assets/letter-open.png";
 
 const weddingDate = new Date("2026-10-07T17:30:00+05:30");
 const gallery = [
@@ -294,9 +296,9 @@ export function WeddingInvitation() {
             <div className="hero-copy" data-reveal>
               <p className="hero-subheading">WE ARE <br></br>GETTING MARRIED</p>
               <h1 className="hero-names">
-                <span className="script-title">Samjin</span>
+                <span className="script-title">Subin</span>
                 <span className="hero-amp">&amp;</span>
-                <span className="script-title">Jineesha</span>
+                <span className="script-title">Siluvaidhasy</span>
               </h1>
               <div className="hero-gold-divider">
                 <span className="divider-line" />
@@ -326,7 +328,7 @@ export function WeddingInvitation() {
               <div className="date-celebration" role="status">
                 <div className="celebration-sparkles" aria-hidden="true">✦ ✧ ✦</div>
                 <strong>Our forever begins</strong>
-                <span>07 October 2026</span>
+                <span>14 October 2026</span>
               </div>
             )}
           </section>
@@ -336,7 +338,7 @@ export function WeddingInvitation() {
               <p className="eyebrow">YOU ARE INVITED TO THE<br />WEDDING CEREMONY OF</p>
 
               <FloralMark />
-              <h2 className="script-title card-person-name">Samjin</h2>
+              <h2 className="script-title card-person-name">Subin</h2>
 
               <div className="parent-section">
                 <span className="parent-label">SON OF</span>
@@ -345,7 +347,7 @@ export function WeddingInvitation() {
 
               <p className="with-connector">With</p>
 
-              <h2 className="script-title card-person-name">Jineesha</h2>
+              <h2 className="script-title card-person-name">Siluvaidhasy</h2>
 
               <div className="parent-section">
                 <span className="parent-label">DAUGHTER OF</span>
@@ -425,155 +427,35 @@ export function WeddingInvitation() {
           </section>
 
          <section className="letter-section">
+          <div className={`image-letter-wrapper ${letterOpen ? "is-open" : ""}`} data-reveal>
+            {/* Closed envelope image */}
+            <div className="letter-closed-img">
+              <img src={letterClosedImage} alt="Sealed love letter envelope" width={1200} height={700} />
+              {!letterOpen && (
+                <button
+                  className="letter-img-seal"
+                  onClick={() => setLetterOpen(true)}
+                  aria-label="Open our love letter"
+                />
+              )}
+            </div>
 
-  <div
-    className={`love-letter-wrapper ${
-      letterOpen ? "is-open" : ""
-    }`}
-    data-reveal
-  >
+            {/* Open envelope image */}
+            <div className="letter-open-img">
+              <img src={letterOpenImage} alt="Opened love letter with heartfelt message" width={1200} height={1200} />
+            </div>
 
-    {/* =========================
-        ENVELOPE
-    ========================== */}
-
-    <div className="love-envelope">
-
-      {/* Letter hidden inside envelope */}
-      <div className="love-letter">
-
-        <div className="letter-border">
-
-          <div className="letter-top-decoration">
-            <span>✦</span>
-            <Heart fill="currentColor" />
-            <span>✦</span>
+            {/* Caption */}
+            <div className="letter-caption">
+              <span className="caption-line" />
+              <div className="caption-content">
+                <span className="caption-icon">{letterOpen ? "✦" : "☝"}</span>
+                <p>{letterOpen ? "A little wish from our hearts" : "Tap the seal to open our letter"}</p>
+              </div>
+              <span className="caption-line" />
+            </div>
           </div>
-
-          <span className="letter-eyebrow">
-            A little note from our hearts
-          </span>
-
-          <div className="letter-divider">
-            <span></span>
-            <Heart fill="currentColor" />
-            <span></span>
-          </div>
-
-          <p className="letter-greeting">
-            Dear loved ones,
-          </p>
-
-          <p className="letter-message">
-            Every chapter of our lives carries a little of your love.
-            Having you beside us as we begin this one would mean the world.
-          </p>
-
-          <div className="letter-divider small">
-            <span></span>
-            <Heart fill="currentColor" />
-            <span></span>
-          </div>
-
-          <p className="letter-closing">
-            With all our love,
-          </p>
-
-          <strong className="letter-names">
-            Samjin &amp; Jineesha
-          </strong>
-
-          <div className="letter-flourish">
-            ✦
-          </div>
-
-        </div>
-
-      </div>
-
-
-      {/* =========================
-          ENVELOPE BODY
-      ========================== */}
-
-      <div className="love-envelope-front">
-
-        {/* Top flap */}
-        <div className="envelope-flap"></div>
-
-        {/* Left fold */}
-        <div className="envelope-left-fold"></div>
-
-        {/* Right fold */}
-        <div className="envelope-right-fold"></div>
-
-        {/* Bottom fold */}
-        <div className="envelope-bottom-fold"></div>
-
-
-        {/* Decorative corner branches */}
-        <div className="envelope-decoration left">
-          <span>❧</span>
-        </div>
-
-        <div className="envelope-decoration right">
-          <span>❧</span>
-        </div>
-
-
-        {/* Decorative stamp */}
-        <div className="envelope-stamp">
-          <span>✦</span>
-        </div>
-
-
-        {/* Heart seal */}
-        <Button
-          className="letter-seal"
-          onClick={() => setLetterOpen(!letterOpen)}
-          aria-label={
-            letterOpen
-              ? "Close our love letter"
-              : "Open our love letter"
-          }
-        >
-          <Heart fill="currentColor" />
-        </Button>
-
-      </div>
-
-    </div>
-
-
-    {/* =========================
-        INSTRUCTION
-    ========================== */}
-
-    <div className="letter-caption">
-
-      <span className="caption-line"></span>
-
-      <div className="caption-content">
-
-        <span className="caption-icon">
-          {letterOpen ? "✦" : "☝"}
-        </span>
-
-        <p>
-          {letterOpen
-            ? "A little wish from our hearts"
-            : "Click the heart to open our letter"}
-        </p>
-
-      </div>
-
-      <span className="caption-line"></span>
-
-    </div>
-
-  </div>
-
-</section>
+        </section>
 
           {/* <section id="venue" className="venue-section paper-section">
             <div className="venue-image"><img src={heroImage} alt="Palace gardens at the wedding venue" width={1024} height={1536} loading="lazy" /></div>
@@ -593,9 +475,9 @@ export function WeddingInvitation() {
           </section> */}
 
           <section className="final-section">
-            <img src={laughImage} alt="Samjin and Jineesha laughing together at dusk" width={1280} height={912} loading="lazy" />
+            <img src={laughImage} alt="Subin and Siluvaidhasy laughing together at dusk" width={1280} height={912} loading="lazy" />
             <div className="final-shade" />
-            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>07 · 10 · 2026</p><span>Samjin &amp; Jineesha</span></div>
+            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>07 · 10 · 2026</p><span>Subin &amp; Siluvaidhasy</span></div>
           </section>
 
           {lightbox !== null && (
