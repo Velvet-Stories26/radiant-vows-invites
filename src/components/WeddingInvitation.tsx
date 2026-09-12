@@ -29,6 +29,7 @@ import topTornEdge from "@/assets/top-torn-svg.svg";
 import bottomTornEdge from "@/assets/bottom-torn-svg.svg";
 import letterClosedImage from "@/assets/letter.png";
 import letterOpenImage from "@/assets/letter-open.png";
+import playbackAudio from "@/assets/playback.mp3";
 
 const weddingDate = new Date("2026-10-07T17:30:00+05:30");
 const gallery = [
@@ -152,7 +153,7 @@ export function WeddingInvitation() {
   const [music, setMusic] = useState(false);
   const [progress, setProgress] = useState(0);
   const [revealedDates, setRevealedDates] = useState(0);
-  const audioRef = useRef<{ context: AudioContext; oscillators: OscillatorNode[] } | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const swipeStart = useRef(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -162,13 +163,43 @@ export function WeddingInvitation() {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       setProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
       document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
-        if (element.getBoundingClientRect().top < window.innerHeight * 0.88) element.dataset["visible"] = "true";
+        if (element.getBoundingClientRect().top < window.innerHeight * 0.95) element.dataset["visible"] = "true";
       });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!contentRevealed) return;
+
+    const checkReveals = () => {
+      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.95) {
+          element.dataset["visible"] = "true";
+        }
+      });
+    };
+    checkReveals();
+    const t1 = setTimeout(checkReveals, 50);
+    const t2 = setTimeout(checkReveals, 300);
+
+    if (audioRef.current && audioRef.current.paused) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().then(() => {
+        setMusic(true);
+      }).catch((err) => {
+        console.log("Audio play error on reveal:", err);
+      });
+    }
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [contentRevealed]);
 
   useEffect(() => {
     if (revealedDates === 3) {
@@ -206,29 +237,17 @@ export function WeddingInvitation() {
   }, []);
 
   const toggleMusic = () => {
-    if (music && audioRef.current) {
-      void audioRef.current.context.close();
-      audioRef.current = null;
+    if (!audioRef.current) return;
+    if (music) {
+      audioRef.current.pause();
       setMusic(false);
-      return;
+    } else {
+      audioRef.current.play().then(() => {
+        setMusic(true);
+      }).catch((err) => {
+        console.log("Audio play error:", err);
+      });
     }
-    const AudioContextClass = window.AudioContext;
-    const context = new AudioContextClass();
-    const gain = context.createGain();
-    gain.gain.value = 0.018;
-    gain.connect(context.destination);
-    const oscillators = [261.63, 329.63, 392].map((frequency, index) => {
-      const oscillator = context.createOscillator();
-      const toneGain = context.createGain();
-      oscillator.type = "sine";
-      oscillator.frequency.value = frequency / (index === 0 ? 2 : 1);
-      toneGain.gain.value = 0.22;
-      oscillator.connect(toneGain).connect(gain);
-      oscillator.start();
-      return oscillator;
-    });
-    audioRef.current = { context, oscillators };
-    setMusic(true);
   };
 
   const handleOpen = () => {
@@ -249,6 +268,7 @@ export function WeddingInvitation() {
 
   return (
     <main className={`wedding-page ${!contentRevealed ? 'locked-scroll' : ''}`}>
+      <audio ref={audioRef} src={playbackAudio} loop preload="auto" />
       {contentRevealed && <div className="scroll-progress" style={{ transform: `scaleX(${progress / 100})` }} />}
 
       {!contentRevealed && (
@@ -265,8 +285,8 @@ export function WeddingInvitation() {
 
       {contentRevealed && (
         <>
-          <Button className="music-button" size="icon" variant="outline" onClick={toggleMusic} aria-label={music ? "Pause ambient music" : "Play ambient music"}>
-            {music ? <Pause /> : <Music2 />}
+          <Button className="music-button" size="icon" variant="outline" onClick={toggleMusic} aria-label={music ? "Turn off music" : "Play music"}>
+            {music ? <Music2 /> : <Play />}
           </Button>
           {/* <Button className="menu-button" size="icon" variant="outline" onClick={() => setNavOpen(!navOpen)} aria-label="Open navigation"><Menu /></Button> */}
           <nav className={navOpen ? "floating-nav is-open" : "floating-nav"} aria-label="Invitation sections">
