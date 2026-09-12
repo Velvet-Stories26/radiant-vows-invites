@@ -31,7 +31,7 @@ import letterClosedImage from "@/assets/letter.png";
 import letterOpenImage from "@/assets/letter-open.png";
 import playbackAudio from "@/assets/playback.mp3";
 
-const weddingDate = new Date("2026-10-07T17:30:00+05:30");
+const weddingDate = new Date("2026-10-14T10:00:00+05:30");
 const gallery = [
   { src: heroImage, alt: "Saanvi and Jai in a palace garden", ratio: "portrait" },
   { src: ringsImage, alt: "Henna, heirloom rings and jasmine", ratio: "landscape" },
@@ -41,22 +41,21 @@ const gallery = [
 
 function useCountdown() {
   const calculate = () => {
-    const distance = Math.max(0, weddingDate.getTime() - Date.now());
+    const now = Date.now();
+    const target = weddingDate.getTime();
+    const distance = Math.max(0, target - now);
     return {
-      days: Math.floor(distance / 86400000),
-      hours: Math.floor((distance / 3600000) % 24),
-      minutes: Math.floor((distance / 60000) % 60),
-      seconds: Math.floor((distance / 1000) % 60),
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000),
     };
   };
-  const [time, setTime] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [time, setTime] = useState(calculate);
   useEffect(() => {
-    const initialTimer = window.setTimeout(() => setTime(calculate()), 500);
+    setTime(calculate());
     const timer = window.setInterval(() => setTime(calculate()), 1000);
-    return () => {
-      window.clearTimeout(initialTimer);
-      window.clearInterval(timer);
-    };
+    return () => window.clearInterval(timer);
   }, []);
   return time;
 }
@@ -318,7 +317,7 @@ export function WeddingInvitation() {
               <h1 className="hero-names">
                 <span className="script-title">Subin</span>
                 <span className="hero-amp">&amp;</span>
-                <span className="script-title">Siluvaidhasi</span>
+                <span className="script-title">Siluvadhasi</span>
               </h1>
               <div className="hero-gold-divider">
                 <span className="divider-line" />
@@ -340,7 +339,7 @@ export function WeddingInvitation() {
             <h2>A golden day awaits</h2>
             <p className="section-intro">Gently scratch each golden panel to reveal when our forever begins.</p>
             <div className="scratch-grid">
-              <ScratchBox label="Day" value="07" onReveal={() => setRevealedDates((count) => count + 1)} />
+              <ScratchBox label="Day" value="14" onReveal={() => setRevealedDates((count) => count + 1)} />
               <ScratchBox label="Month" value="OCT" onReveal={() => setRevealedDates((count) => count + 1)} />
               <ScratchBox label="Year" value="2026" onReveal={() => setRevealedDates((count) => count + 1)} />
             </div>
@@ -367,7 +366,7 @@ export function WeddingInvitation() {
 
               <p className="with-connector">With</p>
 
-              <h2 className="script-title card-person-name">Siluvaidhasi</h2>
+              <h2 className="script-title card-person-name">Siluvadhasi</h2>
 
               <div className="parent-section">
                 <span className="parent-label">DAUGHTER OF</span>
@@ -382,7 +381,7 @@ export function WeddingInvitation() {
               </div>
 
               <strong className="card-event-date">WEDNESDAY · 14 October · 2026</strong>
-              <span className="card-event-venue">at St.John of the Cross Church, Siluvaipuram</span>
+              <span className="card-event-venue">at  St.Mary's Church, Vallavilai</span>
             </div>
           </section>
 
@@ -440,9 +439,9 @@ export function WeddingInvitation() {
             <img className="torn-edge torn-edge-bottom" src={bottomTornEdge} alt="" aria-hidden="true" />
             <div data-reveal><p className="eyebrow">The celebrations</p><h2>Join us for</h2></div>
             <div className="event-list">
-              <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Tuesday · October 13</p><h3>Engagement</h3><p>3:00 in the evening · J.C. Community Hall, Siluvaipuram</p><small>An evening of blessings, laughter & celebration</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/vwfTitZmioioe1EC8?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
-              <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Wednesday · October 14</p><h3>Wedding</h3><p>11:00 in the morning · St.Mary's Church, Vallavilai</p><small></small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/yDX9gXNNEFK3rAhq7?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
-              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Wednesday · October 14</p><h3>Reception</h3><p>1:00 in the Afternoon ·  St.Mary's Community Hall, Vallavilai</p><small>Celebration with cocktails, dinner & dancing · Formal Indian attire</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/hgjhZnmWVZ2ZWevT6?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
+              <article className="event-card event-engagement" style={{ backgroundImage: `url(${engagementImage})` }} data-reveal><span>01</span><div><Heart /><p>Tuesday · October 13</p><h3>Engagement</h3><p>3:00 PM in the evening · J.C. Community Hall, Siluvaipuram</p><small>An evening of blessings, laughter & celebration</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/vwfTitZmioioe1EC8?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
+              <article className="event-card event-wedding" style={{ backgroundImage: `url(${weddingImage})` }} data-reveal><span>02</span><div><CalendarDays /><p>Wednesday · October 14</p><h3>Wedding</h3><p>10:00 AM in the Morning · St.Mary's Church, Vallavilai</p><small>Traditional Indian Attire</small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/yDX9gXNNEFK3rAhq7?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
+              <article className="event-card event-reception"  style={{ backgroundImage: `url(${receptionImage})` }} data-reveal><span>03</span><div><CalendarDays /><p>Wednesday · October 14</p><h3>Reception</h3><p>11:30 AM in the Morning ·  St.Mary's Community Hall, Vallavilai</p><small>Lunch & Celebration </small><div className="mt-5"><Button asChild variant="outline" className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white backdrop-blur-sm"><a href="https://maps.app.goo.gl/hgjhZnmWVZ2ZWevT6?g_st=aw" target="_blank" rel="noreferrer"><MapPin className="mr-2 h-4 w-4" /> View Map</a></Button></div></div></article>
             </div>
           </section>
 
@@ -509,9 +508,9 @@ export function WeddingInvitation() {
           </section> */}
 
           <section className="final-section">
-            <img src={laughImage} alt="Subin and Siluvaidhasi laughing together at dusk" width={1280} height={912} loading="lazy" />
+            <img src={laughImage} alt="Subin and Siluvadhasi laughing together at dusk" width={1280} height={912} loading="lazy" />
             <div className="final-shade" />
-            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>07 · 10 · 2026</p><span>Subin &amp; Siluvaidhasi</span></div>
+            <div data-reveal><Sparkles /><p className="eyebrow">With you, always</p><h2>And So Our<br /><em>Forever Begins...</em></h2><p>14 · 10 · 2026</p><span>Subin &amp; Siluvadhasi</span></div>
           </section>
 
           {lightbox !== null && (
